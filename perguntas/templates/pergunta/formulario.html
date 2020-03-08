@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+  <form method="post">
+    {% csrf_token %}
+    {% for pergunta in perguntas %}
+      <hr />
+      <p>{{pergunta}}</p>
+      {% if pergunta.e_estrela %}
+        <div class="form-group">
+          <fieldset class="rating">
+            <input type="radio" id="{{pergunta.id}}" name="pergunta-{{pergunta.id}}" value="5" /><label for="star5-{{pergunta.id}}" >5 estrelas</label>
+            <input type="radio" id="{{pergunta.id}}" name="pergunta-{{pergunta.id}}" value="4" checked="checked"  /><label for="star4-{{pergunta.id}}" >4 estrelas</label>
+            <input type="radio" id="{{pergunta.id}}" name="pergunta-{{pergunta.id}}" value="3" /><label for="star3-{{pergunta.id}}" >3 estrelas</label>
+            <input type="radio" id="{{pergunta.id}}" name="pergunta-{{pergunta.id}}" value="2" /><label for="star2-{{pergunta.id}}" >2 estrelas</label>
+            <input type="radio" id="{{pergunta.id}}" name="pergunta-{{pergunta.id}}" value="1" /><label for="star1-{{pergunta.id}}" >1 estrela</label>
+          </fieldset>
+        </div>
+      {% endif %}
+      {% if pergunta.e_sim_nao %}
+        <div class="form-group">
+          <fieldset class="rating">
+            <input type="radio" id="{{pergunta.id}}" name="pergunta-{{pergunta.id}}" value="5" /><label for="star5-{{pergunta.id}}" >Sim</label>
+            <input type="radio" id="{{pergunta.id}}" name="pergunta-{{pergunta.id}}" value="4" checked="checked"  /><label for="star4-{{pergunta.id}}" >Não</label>
+          </fieldset>
+        </div>
+      {% endif %}
+      {% if pergunta.e_subjetivo %}
+        <div class="form-group">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+      {% endif %}
+      <hr />
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+{% endblock %}
