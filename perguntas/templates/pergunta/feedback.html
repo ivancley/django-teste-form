@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+  {% for resp in respostas %}
+    <hr />
+    <p>{{resp.pergunta.titulo}}</p>
+    <p>{{resp.resp_texto}}</p>
+  {% endfor %}
+{% endblock %}
